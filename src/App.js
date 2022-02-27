@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import * as Leaf from 'leaflet';
+import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 
 function App() {
   const LeafIcon = Leaf.Icon.extend({
@@ -39,6 +40,9 @@ function App() {
   const onClickMarker = marker => setMarkers(markers.push(marker.latlng));
   const position = [46.2305, -119 ];  // lat, lng 
   const [icon, setIcon] = React.useState(BlueIcon);
+  const [latitude, setLatitude] = React.useState(0);
+  const [longitude, setLongitude] = React.useState(0);
+  const [ministerType, setMinisterType] = React.useState(0);
   const [markers, setMarkers] = React.useState([
     { 
       coordinates: [46.2305, -121.1], 
@@ -56,6 +60,27 @@ function App() {
       color: OrangeIcon
     }
   ]);
+
+  const submitButton = () => {
+    console.log(latitude, longitude)
+    setMarkers(
+      markers.push({
+        coordinates: [latitude, longitude],
+        description: ministerType,
+        color: () => {
+          if (ministerType === "Deliverance Minister") {
+            return GreenIcon
+          }
+          if (ministerType === "eLeader") {
+            return BlueIcon
+          }
+          if (ministerType === "eMember") {
+            return OrangeIcon
+          }
+        }
+      })
+    )
+  }
 
   return (
     <div>
@@ -77,32 +102,6 @@ function App() {
             )
           })
         }
-        <div style={{
-            background: 'red',
-            width: '16%',
-            marginTop: '40%',
-            marginLeft: '5%',
-            display: 'flex',
-            alignItems: 'flex-start',
-            flexDirection: 'column',
-        }}>
-          <h2>Add Coordinates</h2>
-          <form style={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}>
-            <label>Latitude</label>
-            <input>
-            </input>
-            <label>Longitude</label>
-            <input>
-            </input>
-            <label>Minister Type</label>
-            <input>
-            </input>
-            <button>Submit</button>
-          </form>
-        </div>
       </MapContainer>
     </div>
   );
