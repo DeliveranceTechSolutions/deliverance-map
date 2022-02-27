@@ -58,7 +58,7 @@ function App() {
 
   return (
     <div>
-      <MapContainer center={position} zoom={5} maxZoom={7} style={{height: '100vh'}} onClick={e => onClickMarker(e)}>
+      <MapContainer center={position} zoom={5} minZoom={8} style={{height: '100vh'}} onClick={e => onClickMarker(e)}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
