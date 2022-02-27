@@ -76,6 +76,7 @@ function App() {
             )
           })
         }
+      </MapContainer>
         <div style={{
             background: 'red',
             width: '16%',
@@ -102,7 +103,6 @@ function App() {
             <button>Submit</button>
           </form>
         </div>
-      </MapContainer>
     </div>
   );
 }
