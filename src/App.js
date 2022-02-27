@@ -34,6 +34,7 @@ function App() {
     popupAnchor: [-6, -42],
     shadowSize: [41, 41]
   });
+  
 
   const onClickMarker = marker => setMarkers(markers.push(marker.latlng));
   const position = [46.2305, -119 ];  // lat, lng 
@@ -58,7 +59,7 @@ function App() {
 
   return (
     <div>
-      <MapContainer center={position} zoom={5} minZoom={8} style={{height: '100vh'}} onClick={e => onClickMarker(e)}>
+      <MapContainer center={position} zoom={5} minZoom={5} style={{height: '100vh'}} onClick={e => onClickMarker(e)}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -76,11 +77,10 @@ function App() {
             )
           })
         }
-      </MapContainer>
         <div style={{
             background: 'red',
             width: '16%',
-            marginTop: '80%',
+            marginTop: '40%',
             marginLeft: '5%',
             display: 'flex',
             alignItems: 'flex-start',
@@ -103,6 +103,7 @@ function App() {
             <button>Submit</button>
           </form>
         </div>
+      </MapContainer>
     </div>
   );
 }
